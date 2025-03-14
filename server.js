@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const todoRoute = require("./routes/todos");
 
 dotenv.config(); //this loads the environment variables
 
@@ -20,20 +21,14 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 //Middleware
 app.use(express.json());
 
-//schema and model
-const todoSchema = new mongoose.Schema({
-  text: String,
-  completed: Boolean,
-});
-
-const Todo = mongoose.model('Todo', todoSchema);
-
+app.use("/api/todos", todoRoute);
+/* CRUD routes moved to todos.js in routes folder
 //CRUD routes
 //create a new ToDo
-app.post('/api/todos', async (req, res) =>{
+app.post('/routes/todos', async (req, res) =>{
   try{
-    const { text } = req.body;
-    const todo = new Todo({ text, completed: false });
+    const { text, text2 } = req.body;
+    const todo = new Todo({ text, text2 });
     await todo.save();
     res.status(201).json(todo);
   } catch (err) {
@@ -42,7 +37,7 @@ app.post('/api/todos', async (req, res) =>{
 });
 
 //read all ToDos
-app.get('/api/todos', async (req, res) => {
+app.get('/routes/todos', async (req, res) => {
   try{
     const todos = await Todo.find();
     res.json(todos);
@@ -52,11 +47,11 @@ app.get('/api/todos', async (req, res) => {
 });
 
 //Update a ToDo
-app.put('/api/todos/:id', async (req, res) => {
+app.put('/routes/todos/:id', async (req, res) => {
   try{
     const { id } = req.params;
-    const { text, completed } = req.body;
-    const todo = await Todo.findByIdAndUpdate(id, { text, completed}, { new: true});
+    const { text, text2 } = req.body;
+    const todo = await Todo.findByIdAndUpdate(id, { text, text2 }, { new: true});
     res.json(todo);
   } catch (err) {
     res.status(400).json({ error: 'Failed to update ToDo' });
@@ -64,7 +59,7 @@ app.put('/api/todos/:id', async (req, res) => {
 });
 
 //Delete a ToDo
-app.delete('/api/todos/:id', async (req, res) => {
+app.delete('/routes/todos/:id', async (req, res) => {
   try{
     const { id } = req.params;
     await Todo.findByIdAndDelete(id);
@@ -73,7 +68,7 @@ app.delete('/api/todos/:id', async (req, res) => {
     res.status(400).json({ error: 'Failed to delete ToDo' });
   }
 });
-
+*/
 app.listen(port, () =>{
   console.log(`Sever is running on port ${port}`)
 });

@@ -10,7 +10,7 @@ function AddTodo() {
 
   return (
     <div>
-      <h1>Add a Note!</h1>
+      <h1>Add a Task!</h1>
       <form>
         <label for="title">Title:</label><br></br>
         <input type="text" id="title"></input><br></br>
