@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 //Middleware
 app.use(express.json());
 
-app.use("/api/todos", todoRoute);
+//app.use("/api/todos", todoRoute);
 /* CRUD routes moved to todos.js in routes folder
 //CRUD routes
 //create a new ToDo
