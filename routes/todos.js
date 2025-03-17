@@ -1,4 +1,5 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const Todo = require("../models/Todo");
 
 //CRUD routes
@@ -9,6 +10,7 @@ router.post('/', async (req, res) =>{
     const todo = new Todo({ text, text2 });
     await todo.save();
     res.status(201).json(todo);
+    console.log("Successfully created!");
   } catch (err) {
     res.status(400).json({ error: 'Failed to create ToDo' });
   }
