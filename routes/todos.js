@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve ToDos' });
   }
-});
+}); 
 
 //Update a ToDo
 router.put('/:id', async (req, res) => {
