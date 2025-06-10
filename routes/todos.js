@@ -51,11 +51,15 @@ router.get('/:id', async (req, res) =>{
 router.put('/:id', async (req, res) => {
   try{
     const { id } = req.params;
-    const { text, text2 } = req.body;
-    const todo = await Todo.findByIdAndUpdate(id, { text, text2 }, { new: true});
+    const updateData = {
+      status: req.body.status,
+      deadline: req.body.deadline
+    };
+    //const { newStatus, newDeadline } = req.body;
+    const todo = await Todo.findByIdAndUpdate({ _id: id }, updateData, { new: true});
     res.json(todo);
   } catch (err) {
-    res.status(400).json({ error: 'Failed to update ToDo' });
+    res.status(500).json({ error: 'Failed to update ToDo' });
   }
 });
 
