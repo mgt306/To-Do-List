@@ -13,18 +13,6 @@ router.post("/", async (req, res) => {
   .then((todo) => res.json(todo))
   .catch((err) => res.json(err));
 });
-/*
-router.post('/', async (req, res) =>{
-  try{
-    const { text, text2 } = req.body;
-    const todo = new Todo({ text, text2 });
-    await todo.save();
-    res.status(201).json(todo);
-    console.log("Successfully created!");
-  } catch (err) {
-    res.status(400).json({ error: 'Failed to create ToDo' });
-  }
-}); */
 
 //read all ToDos
 router.get('/', async (req, res) => {
@@ -55,7 +43,6 @@ router.put('/:id', async (req, res) => {
       status: req.body.status,
       deadline: req.body.deadline
     };
-    //const { newStatus, newDeadline } = req.body;
     const todo = await Todo.findByIdAndUpdate({ _id: id }, updateData, { new: true});
     res.json(todo);
   } catch (err) {
