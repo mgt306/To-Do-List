@@ -28,14 +28,16 @@ function AddTodo() {
     <div>
       <h1>Add a Task!</h1>
       <form onSubmit= {handleSubmit}>
-        <label for="title">Title:</label><br></br>
-        <input type="text" id="title" onChange={e => setText1(e.target.value)}></input><br></br>
-        <label for="desc">Description:</label><br></br>
-        <input type="text" id="desc" required onChange={e => setText2(e.target.value)}></input>
+        <label for="task">Task:</label><br></br>
+        <input type="text" id="task" required onChange={e => setText1(e.target.value)}></input><br></br>
+        <label for="status">Status:</label><br></br>
+        <input type="text" id="status" required onChange={e => setText2(e.target.value)}></input><br></br>
+        <label for="date">Do by:</label><br></br>
+        <input type="date" id="date" required></input><br></br>
       </form>
       <button type="submit">Add</button>
     </div>
-  );
+  ); // Need to add "name" attribute and fix usestate
 }
 
 export default AddTodo;
