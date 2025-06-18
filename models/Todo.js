@@ -12,6 +12,7 @@ const todoSchema = new mongoose.Schema({
   }, 
   deadline: {
     type: String,
+    required: true,
   },
 });
 

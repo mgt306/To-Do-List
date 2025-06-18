@@ -3,11 +3,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const todoRoute = require('./routes/todos');
+const cors = require('cors');
+
+const corsOptions = {
+  origin:'*',
+  credentials:true,
+  optionSuccessStatus:200
+};
 
 
 dotenv.config(); //this loads the environment variables
 
 const app = express();
+app.use(cors(corsOptions));
 const port = process.env.PORT || 4000;
 
 //connect to mongodb
